@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 @ComponentScan
 @EnableAutoConfiguration
 @RestController
-class Application {
+open class Application {
 
     @Value("\${info.version}")
     @get:RequestMapping("/version")
@@ -23,11 +23,9 @@ class Application {
         return "Hello World"
     }
 
-    companion object {
 
-        fun main(args: Array<String>) {
-            SpringApplication.run(Application::class.java, args)
-        }
-    }
+}
 
+fun main(args: Array<String>) {
+    SpringApplication.run(Application::class.java, *args)
 }

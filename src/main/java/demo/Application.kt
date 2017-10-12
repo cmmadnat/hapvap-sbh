@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
@@ -19,6 +20,12 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.InitBinder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.multipart.MultipartResolver
+import org.springframework.web.multipart.commons.CommonsMultipartResolver
+import org.springframework.web.servlet.LocaleResolver
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor
+import org.springframework.web.servlet.i18n.SessionLocaleResolver
+import java.util.*
 import javax.validation.Valid
 
 @Configuration
@@ -26,6 +33,32 @@ import javax.validation.Valid
 open class Application {
     @Bean open fun hnService(): HnService = HnServiceImpl()
     @Bean open fun homeController(): HomeController = HomeController()
+    @Bean
+    open fun multipartResolver(): MultipartResolver = CommonsMultipartResolver()
+
+
+    @Bean
+    open fun messageSource(): ReloadableResourceBundleMessageSource {
+        val messageSource = ReloadableResourceBundleMessageSource()
+        messageSource.setDefaultEncoding("UTF-8")
+        messageSource.setBasename("classpath:lang/messages")
+        messageSource.setCacheSeconds(10) //reload messages every 10 seconds
+        return messageSource
+    }
+
+    @Bean
+    open fun localeResolver(): LocaleResolver {
+        val slr = SessionLocaleResolver()
+        slr.setDefaultLocale(Locale.forLanguageTag("th"))
+        return slr
+    }
+
+    @Bean
+    open fun localeChangeInterceptor(): LocaleChangeInterceptor {
+        val lci = LocaleChangeInterceptor()
+        lci.paramName = "lang"
+        return lci
+    }
 }
 
 @Controller

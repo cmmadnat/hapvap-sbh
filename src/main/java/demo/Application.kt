@@ -16,10 +16,7 @@ import org.springframework.validation.Errors
 import org.springframework.validation.ValidationUtils
 import org.springframework.validation.Validator
 import org.springframework.web.bind.WebDataBinder
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.InitBinder
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartResolver
 import org.springframework.web.multipart.commons.CommonsMultipartResolver
 import org.springframework.web.servlet.LocaleResolver
@@ -93,6 +90,12 @@ class HomeController {
             return "hnListNew"
         }
         hnService.newHospitalNumber(hospitalNumber)
+        return "redirect:/"
+    }
+
+    @RequestMapping("/hn/{id}/delete")
+    fun delete(@PathVariable id:Long): String {
+        hnService.delete(id)
         return "redirect:/"
     }
 

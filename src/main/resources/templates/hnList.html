@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="vendors/bower_components/sweetalert2/dist/sweetalert2.min.css">
+
 </head>
 <body>
 <div data-layout-fragment="title">
@@ -21,7 +23,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title pull-left">Default modal</h5>
+                            <h5 class="modal-title pull-left">เพิ่ม Hospital Number</h5>
                         </div>
                         <div class="modal-body">
                             <form data-th-action="@{/new}" data-th-object="${hospitalNumber}" method="post"
@@ -60,7 +62,7 @@
                         <td data-th-text="${l.hn}"></td>
                         <td data-th-text="${l.name}"></td>
                         <td>
-                            <button class="btn-danger btn">ลบ</button>
+                            <button class="btn-danger btn delete-hn" data-th-attr="data-id=${l.id}">ลบ</button>
                             <a href="#" data-th-href="@{/hn/{id}(id=${l.id})}" class="btn btn-primary">View</a></td>
 
                     </tr>
@@ -77,6 +79,35 @@
     <script src="vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
     <script src="vendors/bower_components/jszip/dist/jszip.min.js"></script>
     <script src="vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script>
+        $(function () {
+
+            // Warning Message with function
+            $('.delete-hn').click(function () {
+                var id = $(this).data('id');
+                swal({
+                    title: 'Are you sure?',
+                    text: 'You will not be able to recover this HN!',
+                    type: 'warning',
+                    showCancelButton: true,
+                    buttonsStyling: false,
+                    confirmButtonClass: 'btn btn-danger',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonClass: 'btn btn-secondary'
+                }).then(function () {
+                    swal({
+                        title: 'HN Removed!',
+                        text: 'HN is removed',
+                        type: 'success',
+                        buttonsStyling: false,
+                        confirmButtonClass: 'btn btn-primary'
+                    });
+                    window.location = '/hn/' + id + '/delete';
+                });
+            });
+        })
+    </script>
 </div>
 
 </body>

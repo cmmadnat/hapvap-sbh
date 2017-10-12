@@ -1,0 +1,45 @@
+package demo.service
+
+import com.googlecode.objectify.ObjectifyService
+import com.googlecode.objectify.annotation.Entity
+import com.googlecode.objectify.annotation.Id
+import com.googlecode.objectify.annotation.Index
+import org.springframework.boot.CommandLineRunner
+import org.springframework.stereotype.Service
+import java.util.*
+
+@Entity data class AdmissionNumber(@Id var id: Long? = null, var name: String = "", @Index var an: String = "",
+                                  @Index var date: Date = Date(), @Index var appUser: Long? = null)
+
+interface AnService {
+    fun findAll(page: Int, limit: Int): MutableList<AdmissionNumber>
+    fun newAdmissionNumber(AdmissionNumber: AdmissionNumber): Long
+    fun delete(id: Long)
+    fun findOne(id: Long): AdmissionNumber?
+}
+
+@Service
+class AnServiceImpl : AnService, CommandLineRunner {
+    override fun delete(id: Long) {
+        val AdmissionNumber = findOne(id)
+
+        if (AdmissionNumber != null) ObjectifyService.ofy().delete().entity(AdmissionNumber).now()
+    }
+
+    override fun findOne(id: Long): AdmissionNumber? {
+        return ObjectifyService.ofy().load().type(AdmissionNumber::class.java).id(id).now()
+    }
+
+    override fun newAdmissionNumber(AdmissionNumber: AdmissionNumber): Long {
+        return ObjectifyService.ofy().save().entity(AdmissionNumber).now().id
+    }
+
+    override fun findAll(page: Int, limit: Int): MutableList<AdmissionNumber> {
+        return ObjectifyService.ofy().load().type(AdmissionNumber::class.java).limit(limit).order("-date").offset(page * limit).list()
+    }
+
+    override fun run(vararg p0: String?) {
+        ObjectifyService.register(AdmissionNumber::class.java)
+    }
+
+}

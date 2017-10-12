@@ -1,8 +1,6 @@
 package demo
 
-import demo.service.HnService
-import demo.service.HnServiceImpl
-import demo.service.HospitalNumber
+import demo.service.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -29,7 +27,9 @@ import javax.validation.Valid
 @EnableAutoConfiguration
 open class Application {
     @Bean open fun hnService(): HnService = HnServiceImpl()
+    @Bean open fun anService(): AnService = AnServiceImpl()
     @Bean open fun homeController(): HomeController = HomeController()
+    @Bean open fun hospitalNumberController():HospitalNumberController = HospitalNumberController()
     @Bean
     open fun multipartResolver(): MultipartResolver = CommonsMultipartResolver()
 
@@ -68,8 +68,9 @@ class HomeController {
         return "hnList"
 
     }
+
     @InitBinder("hospitalNumber")
-    fun hospitalNumber(webDataBinder: WebDataBinder){
+    fun hospitalNumber(webDataBinder: WebDataBinder) {
         webDataBinder.addValidators(HospitalNumberValidator())
     }
 
@@ -89,12 +90,26 @@ class HomeController {
         if (bindingResult.hasErrors()) {
             return "hnListNew"
         }
-        hnService.newHospitalNumber(hospitalNumber)
-        return "redirect:/"
+        val newHospitalNumber = hnService.newHospitalNumber(hospitalNumber)
+        return "redirect:/hn/$newHospitalNumber"
     }
 
-    @RequestMapping("/hn/{id}/delete")
-    fun delete(@PathVariable id:Long): String {
+
+    @Autowired lateinit var hnService: HnService
+}
+@Controller
+@RequestMapping("hn")
+class HospitalNumberController{
+    @RequestMapping("/{id}")
+    fun view(@PathVariable id:Long, model: Model, admissionNumber: AdmissionNumber): String {
+        val findOne = hnService.findOne(id)
+        if (findOne != null) {
+            model.addAttribute("hn", findOne.hn)
+        }
+       return "viewAnList"
+    }
+    @RequestMapping("/{id}/delete")
+    fun delete(@PathVariable id: Long): String {
         hnService.delete(id)
         return "redirect:/"
     }

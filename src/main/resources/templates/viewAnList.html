@@ -26,9 +26,10 @@
                             <h5 class="modal-title pull-left">เพิ่ม Admission Number (AN)</h5>
                         </div>
                         <div class="modal-body">
-                            <form data-th-action="@{/new}" data-th-object="${admissionNumber}" method="post"
+                            <form data-th-action="@{/{id}/new(id=${id})}" data-th-object="${admissionNumber}" method="post"
                                   id="theform">
                                 <div data-th-replace="fragment/TextField :: input('AN', 'an', true)"></div>
+                                <div data-th-replace="fragment/TextField :: input('Admission Date', 'admissionDate', false)"></div>
                             </form>
                         </div>
                         <div class="modal-footer">

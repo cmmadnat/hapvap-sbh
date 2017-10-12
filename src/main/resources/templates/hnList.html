@@ -24,10 +24,13 @@
                             <h5 class="modal-title pull-left">Default modal</h5>
                         </div>
                         <div class="modal-body">
-                            Curabitur blandit mollis lacus. Nulla sit amet est. Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Cras sagittis.
+                            <form data-th-action="@{/new}" data-th-object="${hospitalNumber}" method="post"id="theform">
+                                <div data-th-replace="fragment/TextField :: input('HN', 'hn', true)"></div>
+                                <div data-th-replace="fragment/TextField :: input('Name', 'name', true)"></div>
+                            </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-link">Save changes</button>
+                            <button type="button" class="btn btn-link" onclick="$('#theform').submit()">Save changes</button>
                             <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
                         </div>
                     </div>

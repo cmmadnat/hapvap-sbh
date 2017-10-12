@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorator="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div data-layout-fragment="title">
+    ประวัติคนไข้ HAP/VAP
+</div>
+<div data-layout-fragment="main">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">รายชื่อคนไข้</h2>
+            <small class="card-subtitle">รายชื่อคนไข้ และ HN ที่ได้รับการวินิจฉัยผ่าน HAP/VAP</small>
+        </div>
+
+        <div class="card-block">
+            <form data-th-action="@{/new}" data-th-object="${hospitalNumber}" method="post" id="theform">
+                <div data-th-replace="fragment/TextField :: input('HN', 'hn', true)"></div>
+                <div data-th-replace="fragment/TextField :: input('Name', 'name', true)"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<div data-layout-fragment="script">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<th:block data-th-fragment="input(label, name, required)" data-th-with="valid=${!#fields.hasErrors(name)}">
+    <div class="form-group"data-th-class="${valid} ? 'form-group' : 'form-group has-error'">
+        <label class="form-control-label" data-th-if="!${valid}" data-th-errors="*{__${name}__}">Input with danger</label>
+        <input type="text" class="form-control" placeholder="Input Default" data-th-placeholder="${label}"
+               data-th-field="*{__${name}__}" data-th-required="${required}">
+        <i class="form-group__bar"></i>
+    </div>
+</th:block>
+</body>
+</html>

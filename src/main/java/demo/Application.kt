@@ -1,5 +1,7 @@
 package demo
 
+import demo.service.HnService
+import demo.service.HnServiceImpl
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.Bean
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 @Configuration
 @EnableAutoConfiguration
 open class Application {
+    @Bean open fun hnService(): HnService = HnServiceImpl()
     @Bean open fun homeController(): HomeController = HomeController()
 }
 

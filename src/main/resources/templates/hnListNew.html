@@ -18,7 +18,8 @@
         <div class="card-block">
             <form data-th-action="@{/new}" data-th-object="${hospitalNumber}" method="post" id="theform">
                 <div data-th-replace="fragment/TextField :: input('HN', 'hn', true)"></div>
-                <div data-th-replace="fragment/TextField :: input('Name', 'name', true)"></div>
+                <div data-th-replace="fragment/TextField :: input('Name', 'name', false)"></div>
+                <button type="submit" class="btn btn-primary">บันทึก</button>
             </form>
         </div>
     </div>

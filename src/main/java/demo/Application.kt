@@ -26,6 +26,13 @@ open class Application {
 
 }
 
+@RequestMapping
+class HomeController(){
+    @RequestMapping fun index(): String {
+        return "empty"
+    }
+}
+
 fun main(args: Array<String>) {
     SpringApplication.run(Application::class.java, *args)
 }

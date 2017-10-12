@@ -26,7 +26,7 @@
                             <h5 class="modal-title pull-left">เพิ่ม Admission Number (AN)</h5>
                         </div>
                         <div class="modal-body">
-                            <form data-th-action="@{/{id}/new(id=${id})}" data-th-object="${admissionNumber}" method="post"
+                            <form data-th-action="@{/hn/{id}/new(id=${id})}" data-th-object="${admissionNumber}" method="post"
                                   id="theform">
                                 <div data-th-replace="fragment/TextField :: input('AN', 'an', true)"></div>
                                 <div data-th-replace="fragment/TextField :: input('Admission Date', 'admissionDate', false)"></div>
@@ -45,22 +45,22 @@
                 <table id="data-table" class="table table-bordered">
                     <thead class="thead-default">
                     <tr>
-                        <th>Name</th>
                         <th>AN</th>
+                        <th>Date</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
-                        <th>Name</th>
                         <th>AN</th>
+                        <th>Date</th>
                         <th>Action</th>
                     </tr>
                     </tfoot>
                     <tbody>
                     <tr data-th-each="l : ${list}">
-                        <td data-th-text="${l.hn}"></td>
-                        <td data-th-text="${l.name}"></td>
+                        <td data-th-text="${l.an}"></td>
+                    <td data-th-text="${{l.admissionDate}}"></td>
                         <td>
                             <button class="btn-danger btn delete-hn" data-th-attr="data-id=${l.id}">ลบ</button>
                             <a href="#" data-th-href="@{/hn/{id}(id=${l.id})}" class="btn btn-primary">View</a></td>

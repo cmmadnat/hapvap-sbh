@@ -15,7 +15,7 @@
         </div>
 
         <div class="card-block">
-            <form data-th-action="@{/{id}/new(id=${id})}" data-th-object="${admissionNumber}" method="post"
+            <form data-th-action="@{/hn/{id}/new(id=${id})}" data-th-object="${admissionNumber}" method="post"
                   id="theform">
                 <div data-th-replace="fragment/TextField :: input('AN', 'an', true)"></div>
                 <div data-th-replace="fragment/TextField :: input('Admission Date', 'admissionDate', false)"></div>

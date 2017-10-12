@@ -1,35 +1,24 @@
 package demo
 
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
-import org.springframework.context.annotation.ComponentScan
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
 
 @Configuration
-@ComponentScan
 @EnableAutoConfiguration
-@RestController
 open class Application {
-
-    @Value("\${info.version}")
-    @get:RequestMapping("/version")
-    val version: String? = null
-
-    @RequestMapping("/")
-    fun home(): String {
-        return "Hello World"
-    }
-
-
+    @Bean open fun homeController(): HomeController = HomeController()
 }
 
-@RequestMapping
-class HomeController(){
-    @RequestMapping fun index(): String {
-        return "empty"
+@Controller
+@RequestMapping("/")
+class HomeController() {
+    @RequestMapping
+    fun index(): String {
+        return "hnList"
     }
 }
 

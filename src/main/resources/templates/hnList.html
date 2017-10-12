@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorator="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div data-layout-fragment="title">
+    ประวัติคนไข้ HAP/VAP
+</div>
+<div data-layout-fragment="main">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">รายชื่อคนไข้</h2>
+            <small class="card-subtitle">รายชื่อคนไข้ และ HN ที่ได้รับการวินิจฉัยผ่าน HAP/VAP</small>
+        </div>
+
+        <div class="card-block">
+            <div class="table-responsive">
+                <table id="data-table" class="table table-bordered">
+                    <thead class="thead-default">
+                    <tr>
+                        <th>Name</th>
+                        <th>HN</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>HN</th>
+                        <th>Action</th>
+                    </tr>
+                    </tfoot>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-layout-fragment="script">
+    <!-- Vendors: Data tables -->
+    <script src="vendors/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="vendors/bower_components/jszip/dist/jszip.min.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+</div>
+
+</body>
+</html>

@@ -13,6 +13,11 @@ import java.util.*
                                    @Index var admissionDate: Date? = Date(),
                                    @Index
                                    var hn: String = "",
+                                   var diagnosis: MutableList<String> = mutableListOf(),
+                                   var priorAntiobiotics: MutableList<String> = mutableListOf(),
+                                   var diagnosisOther: String = "",
+                                   var priorAntiobioticsOther: String = "",
+                                   var outcome: String = "",
                                    @Index
                                    var date: Date = Date(), @Index var appUser: Long? = null)
 

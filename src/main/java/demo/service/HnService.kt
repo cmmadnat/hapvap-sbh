@@ -20,10 +20,16 @@ interface HnService {
     fun delete(id: Long)
     fun findOne(id: Long): HospitalNumber?
     fun searchHn(hn: String): HospitalNumber?
+    fun update(id: Long, findOne: HospitalNumber)
 }
 
 @Service
 class HnServiceImpl : HnService, CommandLineRunner {
+    override fun update(id: Long, findOne: HospitalNumber) {
+        findOne.id = id
+        ofy().save().entity(findOne)
+    }
+
     override fun searchHn(hn: String): HospitalNumber? {
         return ofy().load().type(HospitalNumber::class.java).filter("hn", hn).first().now()
     }

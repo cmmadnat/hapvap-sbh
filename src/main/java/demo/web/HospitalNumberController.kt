@@ -32,6 +32,18 @@ class HospitalNumberController {
         return "viewAnList"
     }
 
+    @PostMapping("{id}/updateUnderlyingDiseases")
+    fun updateUnderlying(@PathVariable id: Long, @Valid hospitalNumber: HospitalNumber, bindingResult: BindingResult): String {
+        val findOne = hnService.findOne(id)
+        if (findOne != null) {
+            findOne.underlyingDisease = hospitalNumber.underlyingDisease
+            findOne.underlyingDiseaseOther = hospitalNumber.underlyingDiseaseOther
+            hnService.update(id, findOne)
+        }
+        return "redirect:/hn/$id"
+
+    }
+
     @InitBinder("admissionNumber")
     fun initBinder(webDataBinder: WebDataBinder) {
         webDataBinder.addValidators(AdmissionNumberValidator())

@@ -1,0 +1,9 @@
+T2DM
+Hypertension
+Coronary artery disease
+COPD
+Asthma
+CVD
+Chronic renal failure
+Autoimmune disease
+Precaution

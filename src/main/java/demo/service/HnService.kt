@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Entity data class HospitalNumber(@Id var id: Long? = null, var name: String = "", @Index var hn: String = "",
-                                  var underlyingDisease:String="",
+                                  var underlyingDisease: MutableList<String> = mutableListOf(),
+                                  var underlyingDiseaseOther: String = "",
                                   @Index var date: Date = Date(), @Index var appUser: Long? = null)
 
 interface HnService {

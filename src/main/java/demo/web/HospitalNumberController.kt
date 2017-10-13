@@ -1,8 +1,7 @@
 package demo.web
 
-import demo.service.AdmissionNumber
-import demo.service.AnService
-import demo.service.HnService
+import com.sun.org.apache.bcel.internal.generic.Select
+import demo.service.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -23,7 +22,9 @@ class HospitalNumberController {
     @RequestMapping("/{id}")
     fun view(@PathVariable id: Long, model: Model, admissionNumber: AdmissionNumber): String {
         val findOne = hnService.findOne(id)
+        model.addAttribute("underlyingDiseases", settingService.underlyingDiseases.map { SelectTwo(it, it) })
         if (findOne != null) {
+            model.addAttribute("hospitalNumber", findOne)
             model.addAttribute("hn", findOne.hn)
             model.addAttribute("id", id)
             model.addAttribute("list", anService.findAnByHn(findOne.hn))
@@ -31,9 +32,24 @@ class HospitalNumberController {
         return "viewAnList"
     }
 
-    @InitBinder
+    @InitBinder("admissionNumber")
     fun initBinder(webDataBinder: WebDataBinder) {
         webDataBinder.addValidators(AdmissionNumberValidator())
+    }
+
+    @InitBinder("hospitalNumber")
+    fun initBinder2(webDataBinder: WebDataBinder) {
+        webDataBinder.addValidators(UnderlyingDiseaseValidator())
+    }
+
+    class UnderlyingDiseaseValidator : Validator {
+        override fun validate(p0: Any?, p1: Errors?) {
+        }
+
+        override fun supports(p0: Class<*>): Boolean {
+            return p0.isAssignableFrom(HospitalNumber::class.java)
+        }
+
     }
 
     class AdmissionNumberValidator : Validator {
@@ -71,4 +87,5 @@ class HospitalNumberController {
 
     @Autowired lateinit var hnService: HnService
     @Autowired lateinit var anService: AnService
+    @Autowired lateinit var settingService: SettingService
 }

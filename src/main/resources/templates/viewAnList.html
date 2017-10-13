@@ -11,64 +11,88 @@
     รายละเอียด AN
 </div>
 <div data-layout-fragment="main">
-    <div class="card">
-        <div class="card-header">
-            <h2 class="card-title">รายชื่อ AN ของคนไข้ HN : <span data-th-text="${hn}"></span></h2>
-            <small class="card-subtitle">รายละเอียด AN ของคนไข้คนนี้</small>
-        </div>
+    <div class="row">
+        <div class="col-lg-4">
 
-        <div class="card-block">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#modal-default">เพิ่ม AN</button>
-            <div class="modal fade" id="modal-default" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title pull-left">เพิ่ม Admission Number (AN)</h5>
+            <div class="card">
+                <div class="card-header">
+                    Underlying Disease
+                </div>
+                <div class="card-block">
+                    <form data-th-action="@{/hn/{id}/updateUnderlyingDiseases(id=${id})}" method="post"
+                          data-th-object="${hospitalNumber}">
+                        <div data-th-replace="fragment/CheckboxField :: checkbox('Pick Underlying Diseases','underlyingDisease', ${underlyingDiseases})"></div>
+                        <div data-th-replace="fragment/TextField :: input('Other', 'underlyingDiseaseOther', false)"></div>
+                        <button type="submit" class="btn btn-primary">บันทึก</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">รายชื่อ AN ของคนไข้ HN : <span data-th-text="${hn}"></span></h2>
+                    <small class="card-subtitle">รายละเอียด AN ของคนไข้คนนี้</small>
+                </div>
+
+                <div class="card-block">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal-default">เพิ่ม AN</button>
+                    <div class="modal fade" id="modal-default" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title pull-left">เพิ่ม Admission Number (AN)</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <form data-th-action="@{/hn/{id}/new(id=${id})}" data-th-object="${admissionNumber}"
+                                          method="post"
+                                          id="theform">
+                                        <div data-th-replace="fragment/TextField :: input('AN', 'an', true)"></div>
+                                        <div data-th-replace="fragment/TextField :: input('Admission Date', 'admissionDate', false)"></div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-link" onclick="$('#theform').submit()">Save
+                                        changes
+                                    </button>
+                                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <form data-th-action="@{/hn/{id}/new(id=${id})}" data-th-object="${admissionNumber}" method="post"
-                                  id="theform">
-                                <div data-th-replace="fragment/TextField :: input('AN', 'an', true)"></div>
-                                <div data-th-replace="fragment/TextField :: input('Admission Date', 'admissionDate', false)"></div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link" onclick="$('#theform').submit()">Save changes
-                            </button>
-                            <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table id="data-table" class="table table-bordered">
+                            <thead class="thead-default">
+                            <tr>
+                                <th>AN</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>AN</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <tr data-th-each="l : ${list}">
+                                <td data-th-text="${l.an}"></td>
+                                <td data-th-text="${{l.admissionDate}}"></td>
+                                <td>
+                                    <button class="btn-danger btn delete-hn" data-th-attr="data-id=${l.id}">ลบ</button>
+                                    <a href="#" data-th-href="@{/an/{id}(id=${l.id})}" class="btn btn-primary">View</a>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
 
-            <div class="table-responsive">
-                <table id="data-table" class="table table-bordered">
-                    <thead class="thead-default">
-                    <tr>
-                        <th>AN</th>
-                        <th>Date</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tfoot>
-                    <tr>
-                        <th>AN</th>
-                        <th>Date</th>
-                        <th>Action</th>
-                    </tr>
-                    </tfoot>
-                    <tbody>
-                    <tr data-th-each="l : ${list}">
-                        <td data-th-text="${l.an}"></td>
-                    <td data-th-text="${{l.admissionDate}}"></td>
-                        <td>
-                            <button class="btn-danger btn delete-hn" data-th-attr="data-id=${l.id}">ลบ</button>
-                            <a href="#" data-th-href="@{/an/{id}(id=${l.id})}" class="btn btn-primary">View</a></td>
-
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
 </div>

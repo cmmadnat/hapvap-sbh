@@ -18,10 +18,15 @@ interface HnService {
     fun newHospitalNumber(hospitalNumber: HospitalNumber): Long
     fun delete(id: Long)
     fun findOne(id: Long): HospitalNumber?
+    fun searchHn(hn: String): HospitalNumber?
 }
 
 @Service
 class HnServiceImpl : HnService, CommandLineRunner {
+    override fun searchHn(hn: String): HospitalNumber? {
+        return ofy().load().type(HospitalNumber::class.java).filter("hn", hn).first().now()
+    }
+
     override fun delete(id: Long) {
         val hospitalNumber = findOne(id)
 

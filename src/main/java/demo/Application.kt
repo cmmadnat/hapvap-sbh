@@ -78,7 +78,16 @@ class CustomDateFormat : Formatter<Date> {
 
 @Controller
 @RequestMapping("/")
-class HomeController {
+class HomeController() {
+    @RequestMapping("search")
+    fun search(@RequestParam hn: String, model: Model): String {
+        val hn = hnService.searchHn(hn)
+        if (hn != null) {
+            return "redirect:/hn/${hn.id}"
+        }
+        return "searchNotFound"
+    }
+
     @GetMapping
     fun index(model: Model, hospitalNumber: HospitalNumber): String {
         val list = hnService.findAll(0, 200)

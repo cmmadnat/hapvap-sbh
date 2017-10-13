@@ -25,6 +25,7 @@ import java.util.*
 open class Application {
     @Bean open fun hnService(): HnService = HnServiceImpl()
     @Bean open fun anService(): AnService = AnServiceImpl()
+    @Bean open fun anTransactionService(): AnTransactionService = AnTransactionServiceImpl()
     @Bean open fun homeController(): HomeController = HomeController()
     @Bean open fun hospitalNumberController(): HospitalNumberController = HospitalNumberController()
     @Bean

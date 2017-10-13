@@ -27,10 +27,16 @@ interface AnService {
     fun findAnByHn(hn: String): MutableList<AdmissionNumber>
     fun delete(id: Long)
     fun findOne(id: Long): AdmissionNumber?
+    fun update(id: Long, findOne: AdmissionNumber)
 }
 
 @Service
 class AnServiceImpl : AnService, CommandLineRunner {
+    override fun update(id: Long, findOne: AdmissionNumber) {
+        findOne.id = id
+        ofy().save().entity(findOne)
+    }
+
     override fun findAnByHn(hn: String): MutableList<AdmissionNumber> {
         return ofy().load().type(AdmissionNumber::class.java).order("date").filter("hn", hn).list()
     }

@@ -6,8 +6,73 @@
 </head>
 <body>
 
-<div data-layout-fragment="title"></div>
-<div data-layout-fragment="main"></div>
+<div data-layout-fragment="title">บันทึกการรักษา</div>
+<div data-layout-fragment="main">
+    <div class="card">
+
+        <div class="card-header">
+            <h2 class="card-title">การรักษาของ AN เลขที่ <span data-th-text="${admissionNumber.an}"></span></h2>
+            <small class="card-subtitle">จดบันทึกและประวัติการรักษาทั้งหมดของ HN เลขที่ <span
+                    data-th-text="${admissionNumber.hn}"></span></small>
+        </div>
+
+        <div class="card-block">
+            <div class="row">
+                <div class="col-lg-4">
+
+                    <div data-th-replace="fragment/RadioField :: radio('Outcome Of Treatment','outcome',${outcomes})"></div>
+                </div>
+                <div class="col-lg-4">
+                    <h3 class="card-block__title">
+                        Diagnosis at time of hospital admission
+                    </h3>
+                    <label class="custom-control custom-radio">
+                        <input id="radio1" name="radio" type="radio" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Toggle this custom radio</span>
+                    </label>
+
+                    <div class="clearfix mb-2"></div>
+
+                    <label class="custom-control custom-radio">
+                        <input type="radio" name="radio" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Or toggle this other custom radio</span>
+                    </label>
+                </div>
+                <div class="col-lg-4">
+                    <h3 class="card-block__title">
+                        ยาเดิม
+                    </h3>
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Option two is disabled</span>
+                    </label>
+                    <div class="clearfix mb-2"></div>
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Option two is disabled</span>
+                    </label>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="card">
+        <div class="card-block">
+            ยาเดิม
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-block">
+            note การรักษา
+        </div>
+    </div>
+</div>
 <div data-layout-fragment="script"></div>
 
 </body>

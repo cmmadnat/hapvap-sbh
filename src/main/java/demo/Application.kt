@@ -1,6 +1,7 @@
 package demo
 
 import demo.service.*
+import demo.web.AdmissionNumberController
 import demo.web.HomeController
 import demo.web.HospitalNumberController
 import org.joda.time.DateTime
@@ -28,6 +29,7 @@ open class Application {
     @Bean open fun anTransactionService(): AnTransactionService = AnTransactionServiceImpl()
     @Bean open fun homeController(): HomeController = HomeController()
     @Bean open fun hospitalNumberController(): HospitalNumberController = HospitalNumberController()
+    @Bean open fun admissionNumberController():AdmissionNumberController = AdmissionNumberController()
     @Bean
     open fun multipartResolver(): MultipartResolver = CommonsMultipartResolver()
 

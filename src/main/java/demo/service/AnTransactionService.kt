@@ -9,14 +9,21 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Service
 import java.util.*
 
-@Entity data class AnTransaction(@Id var id: Long? = null, @Index var an: String = "", var detail: String, var date: Date = Date())
+@Entity data class AnTransaction(@Id var id: Long? = null, @Index var an: String = "",
+                                 var type: String = "",
+                                 var detail: String = "", @Index var date: Date = Date())
 
 interface AnTransactionService {
     fun findByAn(an: String): List<AnTransaction>
+    fun save(anTransaction: AnTransaction)
 }
 
 @Service
 class AnTransactionServiceImpl : AnTransactionService, CommandLineRunner {
+    override fun save(anTransaction: AnTransaction) {
+        ofy().save().entity(anTransaction).now()
+    }
+
     override fun run(vararg p0: String?) {
         ObjectifyService.register(AnTransaction::class.java)
     }

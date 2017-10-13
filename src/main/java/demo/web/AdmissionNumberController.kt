@@ -1,9 +1,6 @@
 package demo.web
 
-import demo.service.AdmissionNumber
-import demo.service.AnService
-import demo.service.AnTransactionService
-import demo.service.SettingService
+import demo.service.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
@@ -15,7 +12,7 @@ import javax.validation.Valid
 @RequestMapping("an")
 class AdmissionNumberController {
     @RequestMapping("{id}")
-    fun viewAn(@PathVariable id: Long, model: Model): String {
+    fun viewAn(@PathVariable id: Long, model: Model, anTransaction: AnTransaction): String {
         val admissionNumber = anService.findOne(id)
         val map = settingService.outcome.map { SelectTwo(it, it) }
         val map2 = settingService.diagnosisAtTimeOfHospitalAdmission.map { SelectTwo(it, it) }
@@ -27,9 +24,21 @@ class AdmissionNumberController {
         model.addAttribute("priorAntiobiotics", map3)
         model.addAttribute("id", id)
         if (admissionNumber != null) {
-            model.addAttribute("list", anTransactionService.findByAn(admissionNumber.an))
+            val findByAn = anTransactionService.findByAn(admissionNumber.an)
+            model.addAttribute("list", findByAn)
         }
         return "viewAn"
+    }
+
+    @PostMapping("{id}/update")
+    fun update(@PathVariable id: Long, @Valid anTransaction: AnTransaction, bindingResult: BindingResult): String {
+        val findOne = anService.findOne(id)
+        if (findOne != null) {
+            anTransaction.an = findOne.an
+            anTransaction.id = null
+            anTransactionService.save(anTransaction)
+        }
+        return "redirect:/an/{id}"
     }
 
     @PostMapping("{id}/updateAuxData")

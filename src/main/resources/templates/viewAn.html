@@ -54,46 +54,103 @@
                     <div class="tab-container">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#note" role="tab" aria-expanded="true">Note</a>
+                                <a class="nav-link active" data-toggle="tab" href="#note" role="tab"
+                                   aria-expanded="true">Note</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#hap-vap" role="tab" aria-expanded="false">HAP/VAP</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#investigation" role="tab" aria-expanded="false">Investigation</a>
+                                <a class="nav-link" data-toggle="tab" href="#investigation" role="tab"
+                                   aria-expanded="false">Investigation</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#sputum-culture" role="tab" aria-expanded="false">Sputum Culture</a>
+                                <a class="nav-link" data-toggle="tab" href="#sputum-culture" role="tab"
+                                   aria-expanded="false">Sputum Culture</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#chest-xray" role="tab" aria-expanded="false">Chest X-Ray</a>
+                                <a class="nav-link" data-toggle="tab" href="#chest-xray" role="tab"
+                                   aria-expanded="false">Chest X-Ray</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#duration-antibiotics" role="tab" aria-expanded="false">Duration Antibiotics</a>
+                                <a class="nav-link" data-toggle="tab" href="#duration-antibiotics" role="tab"
+                                   aria-expanded="false">Duration Antibiotics</a>
                             </li>
                         </ul>
 
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="note" role="tabpanel" aria-expanded="true">
-                                <p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nulla sit amet est. Praesent ac massa at ligula laoreet iaculis. Vivamus aliquet elit ac nisl. Nulla porta dolor. Cras dapibus. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-                                <p>In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Nam eget dui. In ac felis quis tortor malesuada pretium. Phasellus consectetuer vestibulum elit. Duis lobortis massa imperdiet quam. Pellentesque commodo eros a enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Phasellus a est. Pellentesque commodo eros a enim. Cras ultricies mi eu turpis hendrerit fringilla. Donec mollis hendrerit risus. Vestibulum turpis sem, aliquet eget, lobortis pellentesque, rutrum eu, nisl. Praesent egestas neque eu enim. In hac habitasse platea dictumst.</p>
+                                <form data-th-action="@{/an/{id}/update(id=${id})}" data-th-object="${anTransaction}"
+                                      method="post">
+                                    <input  type="hidden" name="type" data-th-value="'note'">
+                                    <textarea class="form-control" data-th-field="*{detail}"></textarea>
+                                    <button class="btn btn-primary" type="submit">บันทึก</button>
+                                </form>
                             </div>
                             <div class="tab-pane fade" id="hap-vap" role="tabpanel" aria-expanded="false">
-                                <p>Morbi mattis ullamcorper velit. Etiam rhoncus. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Cras id dui. Curabitur turpis. Etiam ut purus mattis mauris sodales aliquam. Aenean viverra rhoncus pede. Nulla sit amet est. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Praesent ac sem eget est egestas volutpat. Cras varius. Morbi mollis tellus ac sapien. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Fusce vel dui.</p>
+                                <p>Morbi mattis ullamcorper velit. Etiam rhoncus. Phasellus leo dolor, tempus non,
+                                    auctor et, hendrerit quis, nisi. Cras id dui. Curabitur turpis. Etiam ut purus
+                                    mattis mauris sodales aliquam. Aenean viverra rhoncus pede. Nulla sit amet est.
+                                    Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Praesent ac sem
+                                    eget est egestas volutpat. Cras varius. Morbi mollis tellus ac sapien. In enim
+                                    justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nam ipsum risus, rutrum
+                                    vitae, vestibulum eu, molestie vel, lacus. Fusce vel dui.</p>
                             </div>
                             <div class="tab-pane fade" id="investigation" role="tabpanel" aria-expanded="false">
-                                <p>Etiam rhoncus. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Cras id dui. Curabitur turpis. Etiam ut purus mattis mauris sodales aliquam. Aenean viverra rhoncus pede. Nulla sit amet est. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Praesent ac sem eget est egestas volutpat. Cras varius. Morbi mollis tellus ac sapien. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Fusce vel dui.Morbi mattis ullamcorper velit. Etiam rhoncus. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Cras id dui. Curabitur turpis. Etiam ut purus mattis mauris sodales aliquam. Aenean viverra rhoncus pede. Nulla sit amet est. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Praesent ac sem eget est egestas volutpat. Cras varius. Morbi mollis tellus ac sapien. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Fusce vel dui.</p>
+                                <p>Etiam rhoncus. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Cras
+                                    id dui. Curabitur turpis. Etiam ut purus mattis mauris sodales aliquam. Aenean
+                                    viverra rhoncus pede. Nulla sit amet est. Donec mi odio, faucibus at, scelerisque
+                                    quis, convallis in, nisi. Praesent ac sem eget est egestas volutpat. Cras varius.
+                                    Morbi mollis tellus ac sapien. In enim justo, rhoncus ut, imperdiet a, venenatis
+                                    vitae, justo. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus.
+                                    Fusce vel dui.Morbi mattis ullamcorper velit. Etiam rhoncus. Phasellus leo dolor,
+                                    tempus non, auctor et, hendrerit quis, nisi. Cras id dui. Curabitur turpis. Etiam ut
+                                    purus mattis mauris sodales aliquam. Aenean viverra rhoncus pede. Nulla sit amet
+                                    est. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Praesent ac
+                                    sem eget est egestas volutpat. Cras varius. Morbi mollis tellus ac sapien. In enim
+                                    justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nam ipsum risus, rutrum
+                                    vitae, vestibulum eu, molestie vel, lacus. Fusce vel dui.</p>
                             </div>
                             <div class="tab-pane fade" id="sputum-culture" role="tabpanel" aria-expanded="false">
-                                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas faucibus mollis interdum.</p>
+                                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Aenean eu leo quam.
+                                    Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac
+                                    cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
+                                    risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis
+                                    vestibulum. Maecenas faucibus mollis interdum.</p>
                             </div>
                             <div class="tab-pane fade" id="chest-xray" role="tabpanel" aria-expanded="false">
-                                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas faucibus mollis interdum.</p>
+                                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Aenean eu leo quam.
+                                    Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac
+                                    cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
+                                    risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis
+                                    vestibulum. Maecenas faucibus mollis interdum.</p>
                             </div>
                             <div class="tab-pane fade" id="duration-antibiotics" role="tabpanel" aria-expanded="false">
-                                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas faucibus mollis interdum.</p>
+                                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Aenean eu leo quam.
+                                    Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac
+                                    cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
+                                    risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis
+                                    vestibulum. Maecenas faucibus mollis interdum.</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">ประวัติการรักษา</h2>
+                    <small class="card-subtitle">ประวัติการรักษาเรียงจากเก่าไปหาใหม่</small>
+                </div>
+
+                <div class="listview__item" data-th-each="l : ${list}">
+                    <div class="listview__content">
+                        <div class="badge badge-default" data-th-text="${{l.date}}"></div>
+                        <div class="badge badge-primary" data-th-text="${l.type}"></div>
+                        <br>
+                        <p data-th-text="${l.detail}">Donec congue tempus ligula, varius hendrerit mi hendrerit sit
+                            amet. Duis ac quam sit
+                            amet leo feugiat iaculis</p>
                     </div>
                 </div>
             </div>

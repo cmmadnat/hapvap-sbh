@@ -11,7 +11,7 @@ import java.util.*
 
 @Entity data class AnTransaction(@Id var id: Long? = null, @Index var an: String = "",
                                  var type: String = "",
-                                 var detail: String = "", @Index var date: Date = Date())
+                                 var detail: String = "", var detail2: String = "", @Index var date: Date = Date())
 
 interface AnTransactionService {
     fun findByAn(an: String): List<AnTransaction>

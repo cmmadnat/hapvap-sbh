@@ -82,19 +82,19 @@
                             <div class="tab-pane fade active show" id="note" role="tabpanel" aria-expanded="true">
                                 <form data-th-action="@{/an/{id}/update(id=${id})}" data-th-object="${anTransaction}"
                                       method="post">
-                                    <input  type="hidden" name="type" data-th-value="'note'">
+                                    <input type="hidden" name="type" data-th-value="'note'">
                                     <textarea class="form-control" data-th-field="*{detail}"></textarea>
                                     <button class="btn btn-primary" type="submit">บันทึก</button>
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="hap-vap" role="tabpanel" aria-expanded="false">
-                                <p>Morbi mattis ullamcorper velit. Etiam rhoncus. Phasellus leo dolor, tempus non,
-                                    auctor et, hendrerit quis, nisi. Cras id dui. Curabitur turpis. Etiam ut purus
-                                    mattis mauris sodales aliquam. Aenean viverra rhoncus pede. Nulla sit amet est.
-                                    Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Praesent ac sem
-                                    eget est egestas volutpat. Cras varius. Morbi mollis tellus ac sapien. In enim
-                                    justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nam ipsum risus, rutrum
-                                    vitae, vestibulum eu, molestie vel, lacus. Fusce vel dui.</p>
+                                <form data-th-action="@{/an/{id}/update(id=${id})}" data-th-object="${anTransaction}"
+                                      method="post">
+                                    <input type="hidden" name="type" data-th-value="'hap-vap'">
+                                    <div data-th-replace="fragment/RadioField :: radio('Diagnosis', 'detail', ${hapVap1})"></div>
+                                    <div data-th-replace="fragment/CheckboxField :: checkbox('Patient\'s Condition', 'detail2', ${hapVap2})"></div>
+                                    <button class="btn btn-primary" type="submit">บันทึก</button>
+                                </form>
                             </div>
                             <div class="tab-pane fade" id="investigation" role="tabpanel" aria-expanded="false">
                                 <p>Etiam rhoncus. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Cras
@@ -149,6 +149,9 @@
                         <div class="badge badge-primary" data-th-text="${l.type}"></div>
                         <br>
                         <p data-th-text="${l.detail}">Donec congue tempus ligula, varius hendrerit mi hendrerit sit
+                            amet. Duis ac quam sit
+                            amet leo feugiat iaculis</p>
+                        <p data-th-text="${l.detail2}">Donec congue tempus ligula, varius hendrerit mi hendrerit sit
                             amet. Duis ac quam sit
                             amet leo feugiat iaculis</p>
                     </div>

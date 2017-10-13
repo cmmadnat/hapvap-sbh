@@ -1,0 +1,2 @@
+Hospital-acquired pneumonia (HAP) ; Pneumonia developed after 48-hour of admission
+Ventilator-assciated pneumonia (VAP) ; Pneumonia developed after 48-hour of endotracheal tube

@@ -17,11 +17,15 @@ class AdmissionNumberController {
         val map = settingService.outcome.map { SelectTwo(it, it) }
         val map2 = settingService.diagnosisAtTimeOfHospitalAdmission.map { SelectTwo(it, it) }
         val map3 = settingService.priorAntiobiotics.map { SelectTwo(it, it) }
+        val map4 = settingService.hapVapDiagnosis.map { SelectTwo(it, it) }
+        val map5 = settingService.hapVapPatientsCondition.map { SelectTwo(it, it) }
 
         model.addAttribute("admissionNumber", admissionNumber)
         model.addAttribute("outcomes", map)
         model.addAttribute("diagnosisAtTimeOfHospitalAdmission", map2)
         model.addAttribute("priorAntiobiotics", map3)
+        model.addAttribute("hapVap1", map4)
+        model.addAttribute("hapVap2", map5)
         model.addAttribute("id", id)
         if (admissionNumber != null) {
             val findByAn = anTransactionService.findByAn(admissionNumber.an)

@@ -8,10 +8,29 @@ interface SettingService {
     val underlyingDiseases: List<String>
     val diagnosisAtTimeOfHospitalAdmission: List<String>
     val priorAntiobiotics: List<String>
+    val hapVapDiagnosis: List<String>
+    val hapVapPatientsCondition: List<String>
 }
 
 @Service
 class SettingServiceImpl : SettingService {
+
+    override val hapVapDiagnosis: List<String> = listOf()
+        get() {
+            if (field.isEmpty()) {
+                val file = javaClass.classLoader.getResource("hapVapDiagnosis.txt").file
+                field = File(file).readLines()
+            }
+            return field
+        }
+    override val hapVapPatientsCondition: List<String> = listOf()
+        get() {
+            if (field.isEmpty()) {
+                val file = javaClass.classLoader.getResource("hapVapPatientsCondition.txt").file
+                field = File(file).readLines()
+            }
+            return field
+        }
     override val priorAntiobiotics: List<String> = listOf()
         get() {
             if (field.isEmpty()) {

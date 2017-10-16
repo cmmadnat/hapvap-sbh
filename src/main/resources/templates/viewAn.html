@@ -97,40 +97,40 @@
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="investigation" role="tabpanel" aria-expanded="false">
-                                <p>Etiam rhoncus. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Cras
-                                    id dui. Curabitur turpis. Etiam ut purus mattis mauris sodales aliquam. Aenean
-                                    viverra rhoncus pede. Nulla sit amet est. Donec mi odio, faucibus at, scelerisque
-                                    quis, convallis in, nisi. Praesent ac sem eget est egestas volutpat. Cras varius.
-                                    Morbi mollis tellus ac sapien. In enim justo, rhoncus ut, imperdiet a, venenatis
-                                    vitae, justo. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus.
-                                    Fusce vel dui.Morbi mattis ullamcorper velit. Etiam rhoncus. Phasellus leo dolor,
-                                    tempus non, auctor et, hendrerit quis, nisi. Cras id dui. Curabitur turpis. Etiam ut
-                                    purus mattis mauris sodales aliquam. Aenean viverra rhoncus pede. Nulla sit amet
-                                    est. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Praesent ac
-                                    sem eget est egestas volutpat. Cras varius. Morbi mollis tellus ac sapien. In enim
-                                    justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nam ipsum risus, rutrum
-                                    vitae, vestibulum eu, molestie vel, lacus. Fusce vel dui.</p>
+                                <form data-th-action="@{/an/{id}/update(id=${id})}" data-th-object="${anTransaction}"
+                                      method="post">
+                                    <input type="hidden" name="type" data-th-value="'investigation'">
+                                    <div data-th-replace="fragment/RadioField :: radio('Investigation', 'detail', ${investigation})"></div>
+                                    <button class="btn btn-primary" type="submit">บันทึก</button>
+                                </form>
                             </div>
                             <div class="tab-pane fade" id="sputum-culture" role="tabpanel" aria-expanded="false">
-                                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Aenean eu leo quam.
-                                    Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac
-                                    cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
-                                    risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis
-                                    vestibulum. Maecenas faucibus mollis interdum.</p>
+                                <form data-th-action="@{/an/{id}/update(id=${id})}" data-th-object="${anTransaction}"
+                                      method="post">
+                                    <input type="hidden" name="type" data-th-value="'sputum-culture'">
+                                    <div data-th-replace="fragment/RadioField :: radio('Sputum Culture', 'detail', ${sputumCulture})"></div>
+                                    <div data-th-replace="fragment/TextField :: input('Other', 'detail2', false)"></div>
+
+                                    <button class="btn btn-primary" type="submit">บันทึก</button>
+                                </form>
                             </div>
                             <div class="tab-pane fade" id="chest-xray" role="tabpanel" aria-expanded="false">
-                                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Aenean eu leo quam.
-                                    Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac
-                                    cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
-                                    risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis
-                                    vestibulum. Maecenas faucibus mollis interdum.</p>
+                                <form data-th-action="@{/an/{id}/update(id=${id})}" data-th-object="${anTransaction}"
+                                      method="post">
+                                    <input type="hidden" name="type" data-th-value="'chest-xray'">
+                                    <div data-th-replace="fragment/RadioField :: radio('Chest X-Ray', 'detail', ${chestXray})"></div>
+                                    <div data-th-replace="fragment/TextField :: input('Other', 'detail2', false)"></div>
+                                    <button class="btn btn-primary" type="submit">บันทึก</button>
+                                </form>
                             </div>
                             <div class="tab-pane fade" id="duration-antibiotics" role="tabpanel" aria-expanded="false">
-                                <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Aenean eu leo quam.
-                                    Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac
-                                    cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
-                                    risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis
-                                    vestibulum. Maecenas faucibus mollis interdum.</p>
+                                <form data-th-action="@{/an/{id}/update(id=${id})}" data-th-object="${anTransaction}"
+                                      method="post">
+                                    <input type="hidden" name="type" data-th-value="'duration-antibiotics'">
+                                    <div data-th-replace="fragment/RadioField :: radio('Duration Antibiotics', 'detail', ${durationAntibiotics})"></div>
+                                    <div data-th-replace="fragment/TextField :: input('Other', 'detail2', false)"></div>
+                                    <button class="btn btn-primary" type="submit">บันทึก</button>
+                                </form>
                             </div>
                         </div>
                     </div>
